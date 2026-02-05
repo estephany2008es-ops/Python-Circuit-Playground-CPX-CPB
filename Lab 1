@@ -1,0 +1,30 @@
+import board
+import digitalio
+import time
+import neopixel
+
+led = neopixel.NeoPixel(board.NEOPIXEL,10)
+led.brightness = 0.1
+print(dir(led))
+while True:
+    led[0] = (255,40, 0)
+    time.sleep(.5)
+    led[1] = (225,225,0)
+    time.sleep(.5)
+    led[2] = (0, 255, 0)
+    time.sleep(.5)
+    led[3] = (0, 255, 40)
+    time.sleep(.5)
+    led[4] = (0, 255, 255)
+    time.sleep(.5)
+    led[5] = (0 , 0, 255)
+    time.sleep(.5)
+    led[6] = (255, 0, 255)
+    time.sleep(.5)
+    led[7] = (255,40,160)
+    time.sleep(.5)
+    led[8] = (225,0,20)
+    time.sleep(.5)
+    led[9] = (225,0,0)
+    time.sleep(.5)
+   
