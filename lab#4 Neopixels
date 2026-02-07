@@ -1,0 +1,69 @@
+
+import time
+import board
+import neopixel
+
+# Store how many NeoPixels are connected to the board
+NUM_PIXELS = 10
+
+pixels = neopixel.NeoPixel(board.NEOPIXEL, NUM_PIXELS, auto_write=True)
+
+# Create a list of RGB colors
+# Each color is written as (Red, Green, Blue)
+colors = [
+    (255, 40, 0),    # Orange
+    (225, 225, 0),   # Yellow
+    (0, 255, 0),     # Green
+    (0, 255, 40),    # Green-Cyan
+    (0, 255, 255),   # Cyan
+    (0, 0, 255),     # Blue
+    (255, 0, 255),   # Purple
+    (255, 40, 160),  # Pink
+    (225, 0, 20),    # Red-Pink
+    (225, 0, 0)      # Red
+]
+
+# This loop keeps the animation running forever
+while True:
+
+    # Loop through each LED position on the strip
+    for led_index in range(NUM_PIXELS):
+
+        # Turn off all LEDs before starting the fade
+        pixels.fill((0, 0, 0))
+
+        # Choose a color based on the LED position
+        color = colors[led_index % len(colors)]
+
+        # Fade IN: slowly increase brightness
+        for brightness in range(0, 256, 10):
+
+            # Calculate a dimmed version of the color
+            # Each RGB value is scaled by the brightness
+            faded_color = (
+                brightness * color[0] // 255,
+                brightness * color[1] // 255,
+                brightness * color[2] // 255
+            )
+
+            # Set the current LED to the faded color
+            pixels[led_index] = faded_color
+
+            # Short pause so the fade looks smooth
+            time.sleep(0.02)
+
+        # Fade OUT: slowly decrease brightness
+        for brightness in range(255, -1, -10):
+
+            # Scale the color down as brightness decreases
+            faded_color = (
+                brightness * color[0] // 255,
+                brightness * color[1] // 255,
+                brightness * color[2] // 255
+            )
+
+            # Update the LED with the dimmer color
+            pixels[led_index] = faded_color
+
+            # Short pause so the fade looks smooth
+            time.sleep(0.02)
