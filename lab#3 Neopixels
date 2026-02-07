@@ -1,0 +1,19 @@
+import time
+import board
+import neopixel
+
+NUM_PIXELS = 10
+pixels = neopixel.NeoPixel(board.NEOPIXEL, NUM_PIXELS, auto_write=True)
+
+colors = [
+    (255, 40, 0),
+    (225, 225, 0),
+    (0, 255, 0),
+    (0, 255, 40),
+    (0, 255, 255),
+    (0, 0, 255),
+    (255, 0, 255),
+    (255, 40, 160),
+    (225, 0, 20),
+    (225, 0, 0),
+]
